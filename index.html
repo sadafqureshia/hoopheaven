@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Hoop Heaven - Handmade Gifts & Memories</title>
+    <script type="module" src="script.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- Loading Screen -->
+<div id="loadingScreen" class="loading-screen">
+    <div class="loading-content">
+        <div class="loading-logo">🏡</div>
+        <div class="loading-text">The Hoop Heaven</div>
+        <div class="loading-spinner"></div>
+    </div>
+</div>
+
+<!-- Admin Login Modal -->
+<div id="adminLoginModal" class="modal hidden">
+    <div class="modal-content admin-login-content">
+        <div class="modal-header">
+            <h3>Admin Access</h3>
+            <span class="close" onclick="closeAdminLogin()">&times;</span>
+        </div>
+        <form id="adminLoginForm" class="admin-login-form">
+            <div class="form-group">
+                <label for="adminEmail">Email</label>
+                <input type="email" id="adminEmail" class="form-input" required>
+            </div>
+            <div class="form-group">
+                <label for="adminPassword">Password</label>
+                <input type="password" id="adminPassword" class="form-input" required>
+            </div>
+            <button type="submit" id="adminLoginBtn" class="admin-btn">Login as Admin</button>
+            <div class="error-message" id="adminErrorMessage"></div>
+        </form>
+    </div>
+</div>
+
+<!-- Main Application -->
+<div id="mainApp">
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">
+                <span class="logo-icon">🏡</span>
+                <span class="logo-text">The Hoop Heaven</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#products" class="nav-link">Products</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button id="adminAccessBtn" class="admin-access-btn">
+                    <i class="fas fa-user-shield"></i> Admin
+                </button>
+                <div id="adminControls" class="admin-controls hidden">
+                    <button id="addProductBtn" class="admin-btn">
+                        <i class="fas fa-plus"></i> Add Product
+                    </button>
+                    <button id="logoutAdminBtn" class="admin-btn logout">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </button>
+                </div>
+            </div>
+            <div class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-background">
+            <div class="hero-shape shape-1"></div>
+            <div class="hero-shape shape-2"></div>
+            <div class="hero-shape shape-3"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-badge">✨ Handcrafted with Love</div>
+            <h1 class="hero-title">
+                <span class="title-line">Where Every Gift</span>
+                <span class="title-line highlight">Tells a Story</span>
+            </h1>
+            <p class="hero-description">
+                Create unforgettable memories with our beautifully handcrafted gift frames and keychains. 
+                Personalized in any language, designed with your heart in mind.
+            </p>
+            <div class="hero-buttons">
+                <a href="#products" class="cta-button primary">
+                    <span>Explore Collection</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+                <a href="#contact" class="cta-button secondary">
+                    <span>Get Custom Quote</span>
+                    <i class="fas fa-phone"></i>
+                </a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Happy Customers</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">1000+</div>
+                    <div class="stat-label">Custom Gifts</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">5+</div>
+                    <div class="stat-label">Languages</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">💝 Our Story</div>
+                <h2 class="section-title">Crafting Memories Since Day One</h2>
+                <p class="section-description">
+                    Every piece we create carries a story, a memory, and a piece of our heart.
+                </p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <div class="about-item">
+                        <div class="about-icon">🎨</div>
+                        <div class="about-info">
+                            <h3>Handcrafted Excellence</h3>
+                            <p>Each gift is meticulously crafted by skilled artisans who pour their passion into every detail.</p>
+                        </div>
+                    </div>
+                    <div class="about-item">
+                        <div class="about-icon">🌍</div>
+                        <div class="about-info">
+                            <h3>Global Language Support</h3>
+                            <p>Express your emotions in Hindi, English, Urdu, Arabic, Kashmiri, and many more languages.</p>
+                        </div>
+                    </div>
+                    <div class="about-item">
+                        <div class="about-icon">💝</div>
+                        <div class="about-info">
+                            <h3>Personalized Touch</h3>
+                            <p>Every gift is customized to reflect your unique story and the special bond you share.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-visual">
+                    <div class="about-card">
+                        <div class="card-icon">🖼️</div>
+                        <h4>Premium Frames</h4>
+                        <p>Beautiful cloth frames with custom messages</p>
+                    </div>
+                    <div class="about-card">
+                        <div class="card-icon">🔑</div>
+                        <h4>Custom Keychains</h4>
+                        <p>Personalized keychains for every occasion</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="products-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">🎁 Our Collection</div>
+                <h2 class="section-title">Handcrafted with Love</h2>
+                <p class="section-description">
+                    Discover our beautiful range of customized gifts, each piece telling its own unique story.
+                </p>
+            </div>
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be loaded dynamically -->
+            </div>
+            <div class="products-empty" id="productsEmpty" style="display: none;">
+                <div class="empty-icon">📦</div>
+                <h3>No Products Yet</h3>
+                <p>Our collection is being curated. Check back soon for amazing handcrafted gifts!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">📞 Get in Touch</div>
+                <h2 class="section-title">Let's Create Something Beautiful Together</h2>
+                <p class="section-description">
+                    Ready to create your perfect gift? We're here to help bring your vision to life.
+                </p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>WhatsApp</h3>
+                            <p>Quick responses & easy ordering</p>
+                            <a href="https://wa.me/917889842002" class="contact-link">
+                                +91 78898 42002
+                            </a>
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Phone Call</h3>
+                            <p>Speak directly with our team</p>
+                            <a href="tel:+916006849846" class="contact-link">
+                                +91 60068 49846
+                            </a>
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fab fa-instagram"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Instagram</h3>
+                            <p>Follow our latest creations</p>
+                            <a href="https://instagram.com/the_hoop_haven7" class="contact-link">
+                                @the_hoop_haven7
+                            </a>
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Location</h3>
+                            <p>We deliver across India</p>
+                            <div class="contact-link">
+                                Gagren, Shopian<br>
+                                Jammu & Kashmir, 192303
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form-container">
+                    <div class="contact-form-card">
+                        <h3>Send us a Message</h3>
+                        <form id="contactForm" class="contact-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="contactName">Your Name</label>
+                                    <input type="text" id="contactName" class="form-input" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="contactPhone">Phone Number</label>
+                                    <input type="tel" id="contactPhone" class="form-input" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="contactProduct">Product Interest</label>
+                                <select id="contactProduct" class="form-input">
+                                    <option value="">Select a product</option>
+                                    <option value="frames">Custom Gift Frames</option>
+                                    <option value="keychains">Personalized Keychains</option>
+                                    <option value="custom">Custom Design</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="contactMessage">Your Message</label>
+                                <textarea id="contactMessage" class="form-input" rows="4" placeholder="Tell us about your custom gift idea..."></textarea>
+                            </div>
+                            <button type="submit" class="submit-btn">
+                                <span>Send Message</span>
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <span class="logo-icon">🏡</span>
+                        <span class="logo-text">The Hoop Heaven</span>
+                    </div>
+                    <p>Creating beautiful memories, one gift at a time.</p>
+                    <div class="social-links">
+                        <a href="https://wa.me/917889842002" class="social-link">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="https://instagram.com/the_hoop_haven7" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#products">Products</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Products</h4>
+                        <ul>
+                            <li><a href="#products">Gift Frames</a></li>
+                            <li><a href="#products">Keychains</a></li>
+                            <li><a href="#products">Custom Designs</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Contact Info</h4>
+                        <ul>
+                            <li>📞 +91 78898 42002</li>
+                            <li>📞 +91 60068 49846</li>
+                            <li>📍 Gagren, Shopian, J&K</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 The Hoop Heaven. All rights reserved. Made with ❤️ in Kashmir.</p>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<!-- Product Modal -->
+<div id="productModal" class="modal hidden">
+    <div class="modal-content product-modal-content">
+        <div class="modal-header">
+            <h3 id="modalTitle" class="modal-title">Product Details</h3>
+            <span class="close" onclick="closeProductModal()">&times;</span>
+        </div>
+        <div class="modal-body">
+            <div class="modal-image-container">
+                <img id="modalImage" class="modal-image" src="/placeholder.svg" alt="Product Image">
+            </div>
+            <div class="modal-info">
+                <div class="modal-price" id="modalPrice">₹299</div>
+                <p id="modalDescription" class="modal-description">Product description will appear here.</p>
+                <div class="modal-features" id="modalFeatures">
+                    <!-- Features will be added dynamically -->
+                </div>
+                <div class="modal-actions">
+                    <a id="modalWhatsApp" href="#" class="modal-btn whatsapp-btn">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>Order via WhatsApp</span>
+                    </a>
+                    <a id="modalCall" href="#" class="modal-btn call-btn">
+                        <i class="fas fa-phone"></i>
+                        <span>Call to Order</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Product Modal -->
+<div id="addProductModal" class="modal hidden">
+    <div class="modal-content add-product-content">
+        <div class="modal-header">
+            <h3>Add New Product</h3>
+            <span class="close" onclick="closeAddProductModal()">&times;</span>
+        </div>
+        <form id="addProductForm" class="add-product-form">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="productName">Product Name</label>
+                    <input type="text" id="productName" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label for="productPrice">Price (₹)</label>
+                    <input type="number" id="productPrice" class="form-input" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="productDescription">Description</label>
+                <textarea id="productDescription" class="form-input" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="productImage">Product Image</label>
+                <div class="image-upload-container">
+                    <input type="file" id="productImage" class="image-input" accept="image/*" required>
+                    <div class="image-upload-preview" id="imagePreview">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <span>Click to upload image</span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="productCategory">Category</label>
+                <select id="productCategory" class="form-input" required>
+                    <option value="">Select Category</option>
+                    <option value="frames">Gift Frames</option>
+                    <option value="keychains">Keychains</option>
+                    <option value="custom">Custom Designs</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="productFeatures">Features (one per line)</label>
+                <textarea id="productFeatures" class="form-input" rows="4" placeholder="Handmade&#10;Customizable&#10;Premium Quality"></textarea>
+            </div>
+            <button type="submit" class="submit-btn">
+                <span>Add Product</span>
+                <i class="fas fa-plus"></i>
+            </button>
+        </form>
+    </div>
+</div>
+
+<!-- Floating WhatsApp Button -->
+<a href="https://wa.me/917889842002?text=Hi! I'm interested in your handmade gifts" class="fab">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- Notification -->
+<div id="notification" class="notification hidden">
+    <div class="notification-content">
+        <i class="notification-icon"></i>
+        <span class="notification-text"></span>
+    </div>
+</div>
+
+</body>
+</html>
