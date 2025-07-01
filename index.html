@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Hoop Heaven - Handmade Gifts & Memories</title>
+    <script type="module" src="script.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-logo">
+                <i class="fas fa-home"></i>
+            </div>
+            <div class="loading-text">The Hoop Heaven</div>
+            <div class="loading-spinner"></div>
+            <div class="loading-progress">
+                <div class="progress-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress">
+        <div class="scroll-progress-bar"></div>
+    </div>
+
+    <!-- Admin Login Modal -->
+    <div id="adminLoginModal" class="modal hidden">
+        <div class="modal-content admin-login-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-shield-alt"></i> Admin Access</h3>
+                <span class="close" onclick="closeAdminLogin()">
+                    <i class="fas fa-times"></i>
+                </span>
+            </div>
+            <form id="adminLoginForm" class="admin-login-form">
+                <div class="form-group">
+                    <label for="adminEmail">
+                        <i class="fas fa-envelope"></i> Email
+                    </label>
+                    <input type="email" id="adminEmail" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label for="adminPassword">
+                        <i class="fas fa-lock"></i> Password
+                    </label>
+                    <input type="password" id="adminPassword" class="form-input" required>
+                </div>
+                <button type="submit" id="adminLoginBtn" class="admin-btn">
+                    <i class="fas fa-sign-in-alt"></i> Login as Admin
+                </button>
+                <div class="error-message" id="adminErrorMessage"></div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main Application -->
+    <div id="mainApp">
+        <!-- Header -->
+        <header class="header">
+            <nav class="nav">
+                <div class="logo">
+                    <span class="logo-icon">
+                        <i class="fas fa-home"></i>
+                    </span>
+                    <span class="logo-text">The Hoop Heaven</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#home" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="#about" class="nav-link"><i class="fas fa-info-circle"></i> About</a></li>
+                    <li><a href="#products" class="nav-link"><i class="fas fa-gift"></i> Products</a></li>
+                    <li><a href="#contact" class="nav-link"><i class="fas fa-envelope"></i> Contact</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <!-- Theme Toggle -->
+                    <button id="themeToggle" class="theme-toggle" title="Toggle Theme">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button id="adminAccessBtn" class="admin-access-btn">
+                        <i class="fas fa-user-shield"></i> Admin
+                    </button>
+                    <div id="adminControls" class="admin-controls hidden">
+                        <button id="addProductBtn" class="admin-btn">
+                            <i class="fas fa-plus"></i> Add Product
+                        </button>
+                        <button id="logoutAdminBtn" class="admin-btn logout">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </button>
+                    </div>
+                </div>
+                <div class="mobile-menu-toggle" id="mobileMenuToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-background">
+                <div class="hero-shape shape-1"></div>
+                <div class="hero-shape shape-2"></div>
+                <div class="hero-shape shape-3"></div>
+                <div class="floating-elements">
+                    <div class="floating-element"><i class="fas fa-heart"></i></div>
+                    <div class="floating-element"><i class="fas fa-gift"></i></div>
+                    <div class="floating-element"><i class="fas fa-star"></i></div>
+                    <div class="floating-element"><i class="fas fa-sparkles"></i></div>
+                </div>
+            </div>
+            <div class="hero-content">
+                <div class="hero-badge animate-fade-in">
+                    <i class="fas fa-sparkles"></i> Handcrafted with Love
+                </div>
+                <h1 class="hero-title">
+                    <span class="title-line animate-slide-up">Where Every Gift</span>
+                    <span class="title-line highlight animate-slide-up">Tells a Story</span>
+                </h1>
+                <p class="hero-description animate-fade-in">
+                    Create unforgettable memories with our beautifully handcrafted gift frames and keychains. 
+                    Personalized in any language, designed with your heart in mind.
+                </p>
+                <div class="hero-buttons animate-fade-in">
+                    <a href="#products" class="cta-button primary">
+                        <span>Explore Collection</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="#contact" class="cta-button secondary">
+                        <span>Get Custom Quote</span>
+                        <i class="fas fa-phone"></i>
+                    </a>
+                </div>
+                <div class="hero-stats animate-fade-in">
+                    <div class="stat">
+                        <div class="stat-icon"><i class="fas fa-users"></i></div>
+                        <div class="stat-number" data-count="500">0</div>
+                        <div class="stat-label">Happy Customers</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-icon"><i class="fas fa-gift"></i></div>
+                        <div class="stat-number" data-count="1000">0</div>
+                        <div class="stat-label">Custom Gifts</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-icon"><i class="fas fa-globe"></i></div>
+                        <div class="stat-number" data-count="5">0</div>
+                        <div class="stat-label">Languages</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about-section">
+            <div class="container">
+                <div class="section-header animate-on-scroll">
+                    <div class="section-badge">
+                        <i class="fas fa-heart"></i> Our Story
+                    </div>
+                    <h2 class="section-title">Crafting Memories Since Day One</h2>
+                    <p class="section-description">
+                        Every piece we create carries a story, a memory, and a piece of our heart.
+                    </p>
+                </div>
+                <div class="about-content">
+                    <div class="about-text">
+                        <div class="about-item animate-on-scroll">
+                            <div class="about-icon">
+                                <i class="fas fa-palette"></i>
+                            </div>
+                            <div class="about-info">
+                                <h3>Handcrafted Excellence</h3>
+                                <p>Each gift is meticulously crafted by skilled artisans who pour their passion into every detail.</p>
+                            </div>
+                        </div>
+                        <div class="about-item animate-on-scroll">
+                            <div class="about-icon">
+                                <i class="fas fa-globe-americas"></i>
+                            </div>
+                            <div class="about-info">
+                                <h3>Global Language Support</h3>
+                                <p>Express your emotions in Hindi, English, Urdu, Arabic, Kashmiri, and many more languages.</p>
+                            </div>
+                        </div>
+                        <div class="about-item animate-on-scroll">
+                            <div class="about-icon">
+                                <i class="fas fa-magic"></i>
+                            </div>
+                            <div class="about-info">
+                                <h3>Personalized Touch</h3>
+                                <p>Every gift is customized to reflect your unique story and the special bond you share.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-visual">
+                        <div class="about-card animate-on-scroll">
+                            <div class="card-icon">
+                                <i class="fas fa-image"></i>
+                            </div>
+                            <h4>Premium Frames</h4>
+                            <p>Beautiful cloth frames with custom messages</p>
+                        </div>
+                        <div class="about-card animate-on-scroll">
+                            <div class="card-icon">
+                                <i class="fas fa-key"></i>
+                            </div>
+                            <h4>Custom Keychains</h4>
+                            <p>Personalized keychains for every occasion</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section id="products" class="products-section">
+            <div class="container">
+                <div class="section-header animate-on-scroll">
+                    <div class="section-badge">
+                        <i class="fas fa-gift"></i> Our Collection
+                    </div>
+                    <h2 class="section-title">Handcrafted with Love</h2>
+                    <p class="section-description">
+                        Discover our beautiful range of customized gifts, each piece telling its own unique story.
+                    </p>
+                </div>
+
+                <!-- Product Filter -->
+                <div class="product-filters animate-on-scroll">
+                    <button class="filter-btn active" data-filter="all">
+                        <i class="fas fa-th"></i> All Products
+                    </button>
+                    <button class="filter-btn" data-filter="frames">
+                        <i class="fas fa-picture-o"></i> Frames
+                    </button>
+                    <button class="filter-btn" data-filter="keychains">
+                        <i class="fas fa-key"></i> Keychains
+                    </button>
+                    <button class="filter-btn" data-filter="custom">
+                        <i class="fas fa-magic"></i> Custom
+                    </button>
+                </div>
+
+                <div class="products-grid" id="productsGrid">
+                    <!-- Products will be loaded dynamically -->
+                </div>
+
+                <div class="products-empty" id="productsEmpty" style="display: none;">
+                    <div class="empty-icon">
+                        <i class="fas fa-box-open"></i>
+                    </div>
+                    <h3>No Products Yet</h3>
+                    <p>Our collection is being curated. Check back soon for amazing handcrafted gifts!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="testimonials-section">
+            <div class="container">
+                <div class="section-header animate-on-scroll">
+                    <div class="section-badge">
+                        <i class="fas fa-quote-left"></i> Testimonials
+                    </div>
+                    <h2 class="section-title">What Our Customers Say</h2>
+                    <p class="section-description">
+                        Real stories from real customers who love our handcrafted gifts.
+                    </p>
+                </div>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card animate-on-scroll">
+                        <div class="testimonial-content">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p>"Absolutely beautiful work! The personalized frame I ordered exceeded my expectations. The attention to detail is incredible."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="author-info">
+                                <h4>Priya Sharma</h4>
+                                <span>Delhi</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card animate-on-scroll">
+                        <div class="testimonial-content">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p>"The custom keychain with Urdu calligraphy was perfect for my anniversary gift. Fast delivery and excellent quality!"</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="author-info">
+                                <h4>Ahmed Khan</h4>
+                                <span>Mumbai</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card animate-on-scroll">
+                        <div class="testimonial-content">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p>"Amazing craftsmanship! The team understood exactly what I wanted and delivered beyond expectations. Highly recommended!"</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="author-info">
+                                <h4>Sarah Johnson</h4>
+                                <span>Bangalore</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section">
+    <div class="container">
+        <div class="section-header animate-on-scroll">
+            <div class="section-badge">
+                <i class="fas fa-phone"></i> Get in Touch
+            </div>
+            <h2 class="section-title">Let's Create Something Beautiful Together</h2>
+            <p class="section-description">
+                Ready to create your perfect gift? We're here to help bring your vision to life.
+            </p>
+        </div>
+        <div class="contact-content">
+            <div class="contact-info">
+                <div class="contact-card whatsapp-card animate-on-scroll">
+                    <div class="contact-icon-wrapper">
+                        <div class="contact-icon whatsapp-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div class="icon-pulse whatsapp-pulse"></div>
+                    </div>
+                    <div class="contact-details">
+                        <h3>WhatsApp Chat</h3>
+                        <p>Quick responses & easy ordering</p>
+                        <a href="https://wa.me/917889842002" class="contact-link whatsapp-link">
+                            <i class="fab fa-whatsapp"></i>
+                            +91 78898 42002
+                        </a>
+                    </div>
+                    <div class="card-glow whatsapp-glow"></div>
+                </div>
+
+                <div class="contact-card phone-card animate-on-scroll">
+                    <div class="contact-icon-wrapper">
+                        <div class="contact-icon phone-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div class="icon-pulse phone-pulse"></div>
+                    </div>
+                    <div class="contact-details">
+                        <h3>Direct Call</h3>
+                        <p>Speak directly with our team</p>
+                        <a href="tel:+916006849846" class="contact-link phone-link">
+                            <i class="fas fa-phone-alt"></i>
+                            +91 60068 49846
+                        </a>
+                    </div>
+                    <div class="card-glow phone-glow"></div>
+                </div>
+
+                <div class="contact-card instagram-card animate-on-scroll">
+                    <div class="contact-icon-wrapper">
+                        <div class="contact-icon instagram-icon">
+                            <i class="fab fa-instagram"></i>
+                        </div>
+                        <div class="icon-pulse instagram-pulse"></div>
+                    </div>
+                    <div class="contact-details">
+                        <h3>Instagram</h3>
+                        <p>Follow our latest creations</p>
+                        <a href="https://instagram.com/the_hoop_haven7" class="contact-link instagram-link">
+                            <i class="fab fa-instagram"></i>
+                            @the_hoop_haven7
+                        </a>
+                    </div>
+                    <div class="card-glow instagram-glow"></div>
+                </div>
+
+                <div class="contact-card email-card animate-on-scroll">
+                    <div class="contact-icon-wrapper">
+                        <div class="contact-icon email-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="icon-pulse email-pulse"></div>
+                    </div>
+                    <div class="contact-details">
+                        <h3>Email Us</h3>
+                        <p>Send us your requirements</p>
+                        <a href="mailto:info@hoopheaven.com" class="contact-link email-link">
+                            <i class="fas fa-envelope"></i>
+                            info@hoopheaven.com
+                        </a>
+                    </div>
+                    <div class="card-glow email-glow"></div>
+                </div>
+
+                <div class="contact-card telegram-card animate-on-scroll">
+                    <div class="contact-icon-wrapper">
+                        <div class="contact-icon telegram-icon">
+                            <i class="fab fa-telegram-plane"></i>
+                        </div>
+                        <div class="icon-pulse telegram-pulse"></div>
+                    </div>
+                    <div class="contact-details">
+                        <h3>Telegram</h3>
+                        <p>Fast messaging & file sharing</p>
+                        <a href="https://t.me/hoopheaven" class="contact-link telegram-link">
+                            <i class="fab fa-telegram-plane"></i>
+                            @hoopheaven
+                        </a>
+                    </div>
+                    <div class="card-glow telegram-glow"></div>
+                </div>
+
+                <div class="contact-card location-card animate-on-scroll">
+                    <div class="contact-icon-wrapper">
+                        <div class="contact-icon location-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="icon-pulse location-pulse"></div>
+                    </div>
+                    <div class="contact-details">
+                        <h3>Our Location</h3>
+                        <p>We deliver across India</p>
+                        <div class="contact-link location-link">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Gagren, Shopian<br>Jammu & Kashmir, 192303</span>
+                        </div>
+                    </div>
+                    <div class="card-glow location-glow"></div>
+                </div>
+            </div>
+
+            <div class="contact-form-container animate-on-scroll">
+                <div class="contact-form-card">
+                    <h3><i class="fas fa-paper-plane"></i> Send us a Message</h3>
+                    <form id="contactForm" class="contact-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="contactName">
+                                    <i class="fas fa-user"></i> Your Name
+                                </label>
+                                <input type="text" id="contactName" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contactPhone">
+                                    <i class="fas fa-phone"></i> Phone Number
+                                </label>
+                                <input type="tel" id="contactPhone" class="form-input" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactProduct">
+                                <i class="fas fa-gift"></i> Product Interest
+                            </label>
+                            <select id="contactProduct" class="form-input">
+                                <option value="">Select a product</option>
+                                <option value="frames">Custom Gift Frames</option>
+                                <option value="keychains">Personalized Keychains</option>
+                                <option value="custom">Custom Design</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactMessage">
+                                <i class="fas fa-comment"></i> Your Message
+                            </label>
+                            <textarea id="contactMessage" class="form-input" rows="4" placeholder="Tell us about your custom gift idea..."></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">
+                            <span>Send Message</span>
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-brand">
+                        <div class="footer-logo">
+                            <span class="logo-icon">
+                                <i class="fas fa-home"></i>
+                            </span>
+                            <span class="logo-text">The Hoop Heaven</span>
+                        </div>
+                        <p>Creating beautiful memories, one gift at a time.</p>
+                        <div class="social-links">
+                            <a href="https://wa.me/917889842002" class="social-link whatsapp-social" title="WhatsApp">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                            <a href="https://instagram.com/the_hoop_haven7" class="social-link instagram-social" title="Instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="tel:+917889842002" class="social-link phone-social" title="Phone">
+                                <i class="fas fa-phone"></i>
+                            </a>
+                            <a href="mailto:info@hoopheaven.com" class="social-link email-social" title="Email">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="footer-links">
+                        <div class="footer-column">
+                            <h4><i class="fas fa-link"></i> Quick Links</h4>
+                            <ul>
+                                <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
+                                <li><a href="#about"><i class="fas fa-info-circle"></i> About</a></li>
+                                <li><a href="#products"><i class="fas fa-gift"></i> Products</a></li>
+                                <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-column">
+                            <h4><i class="fas fa-gift"></i> Products</h4>
+                            <ul>
+                                <li><a href="#products"><i class="fas fa-picture-o"></i> Gift Frames</a></li>
+                                <li><a href="#products"><i class="fas fa-key"></i> Keychains</a></li>
+                                <li><a href="#products"><i class="fas fa-magic"></i> Custom Designs</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-column">
+                            <h4><i class="fas fa-info-circle"></i> Contact Info</h4>
+                            <ul>
+                                <li><i class="fas fa-phone"></i> +91 78898 42002</li>
+                                <li><i class="fas fa-phone"></i> +91 60068 49846</li>
+                                <li><i class="fas fa-map-marker-alt"></i> Gagren, Shopian, J&K</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2024 The Hoop Heaven. All rights reserved. Made with <i class="fas fa-heart"></i> in Kashmir.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Product Modal -->
+    <div id="productModal" class="modal hidden">
+        <div class="modal-content product-modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle" class="modal-title">
+                    <i class="fas fa-gift"></i> Product Details
+                </h3>
+                <span class="close" onclick="closeProductModal()">
+                    <i class="fas fa-times"></i>
+                </span>
+            </div>
+            <div class="modal-body">
+                <div class="modal-image-container">
+                    <img id="modalImage" class="modal-image" src="/placeholder.svg" alt="Product Image">
+                    <div class="image-overlay">
+                        <button class="zoom-btn">
+                            <i class="fas fa-search-plus"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="modal-info">
+                    <div class="modal-price" id="modalPrice">₹299</div>
+                    <p id="modalDescription" class="modal-description">Product description will appear here.</p>
+                    <div class="modal-features" id="modalFeatures">
+                        <!-- Features will be added dynamically -->
+                    </div>
+                    <div class="modal-actions">
+                        <a id="modalWhatsApp" href="#" class="modal-btn whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i>
+                            <span>Order via WhatsApp</span>
+                        </a>
+                        <a id="modalCall" href="#" class="modal-btn call-btn">
+                            <i class="fas fa-phone"></i>
+                            <span>Call to Order</span>
+                        </a>
+                        <!-- Admin Delete Button -->
+                        <button id="modalDeleteBtn" class="modal-btn delete-btn hidden" onclick="deleteProduct()">
+                            <i class="fas fa-trash"></i>
+                            <span>Delete Product</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Product Modal -->
+    <div id="addProductModal" class="modal hidden">
+        <div class="modal-content add-product-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-plus"></i> Add New Product</h3>
+                <span class="close" onclick="closeAddProductModal()">
+                    <i class="fas fa-times"></i>
+                </span>
+            </div>
+            <form id="addProductForm" class="add-product-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="productName">
+                            <i class="fas fa-tag"></i> Product Name
+                        </label>
+                        <input type="text" id="productName" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="productPrice">
+                            <i class="fas fa-rupee-sign"></i> Price (₹)
+                        </label>
+                        <input type="number" id="productPrice" class="form-input" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="productDescription">
+                        <i class="fas fa-align-left"></i> Description
+                    </label>
+                    <textarea id="productDescription" class="form-input" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="productImage">
+                        <i class="fas fa-image"></i> Product Image
+                    </label>
+                    <div class="image-upload-container">
+                        <input type="file" id="productImage" class="image-input" accept="image/*" required>
+                        <div class="image-upload-preview" id="imagePreview">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <span>Click to upload image</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="productCategory">
+                        <i class="fas fa-folder"></i> Category
+                    </label>
+                    <select id="productCategory" class="form-input" required>
+                        <option value="">Select Category</option>
+                        <option value="frames">Gift Frames</option>
+                        <option value="keychains">Keychains</option>
+                        <option value="custom">Custom Designs</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="productFeatures">
+                        <i class="fas fa-list"></i> Features (one per line)
+                    </label>
+                    <textarea id="productFeatures" class="form-input" rows="4" placeholder="Handmade&#10;Customizable&#10;Premium Quality"></textarea>
+                </div>
+                <button type="submit" class="submit-btn">
+                    <span>Add Product</span>
+                    <i class="fas fa-plus"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/917889842002?text=Hi! I'm interested in your handmade gifts" class="fab whatsapp-fab">
+        <i class="fab fa-whatsapp"></i>
+        <span class="fab-tooltip">Chat with us!</span>
+    </a>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top hidden">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Notification -->
+    <div id="notification" class="notification hidden">
+        <div class="notification-content">
+            <i class="notification-icon"></i>
+            <span class="notification-text"></span>
+            <button class="notification-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+</body>
+</html>
